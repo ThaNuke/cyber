@@ -1,0 +1,51 @@
+services:
+  # Frontend Service
+  - type: web
+    name: cyber-frontend
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://cyber-backend.onrender.com/api
+      - key: VITE_MSAL_CLIENT_ID
+        value: f536f86f-a1b4-466d-bda9-9aa4d4a869d0
+      - key: VITE_MSAL_TENANT_ID
+        value: 6f4432dc-20d2-441d-b1db-ac3380ba633d
+
+  # Backend Service
+  - type: web
+    name: cyber-backend
+    runtime: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "5000"
+      - key: SUPABASE_URL
+        value: https://gnmlimcoyddttkkbwrhe.supabase.co
+      - key: SUPABASE_ANON_KEY
+        fromFile: SUPABASE_ANON_KEY
+      - key: SUPABASE_SERVICE_KEY
+        fromFile: SUPABASE_SERVICE_KEY
+      - key: JWT_SECRET
+        fromFile: JWT_SECRET
+      - key: EVAL_ENCRYPTION_KEY
+        fromFile: EVAL_ENCRYPTION_KEY
+      - key: MS_TENANT_ID
+        value: 6f4432dc-20d2-441d-b1db-ac3380ba633d
+      - key: MS_CLIENT_ID
+        value: f536f86f-a1b4-466d-bda9-9aa4d4a869d0
+      - key: MS_ALLOWED_DOMAINS
+        value: kmutt.ac.th,mail.kmutt.ac.th
+      - key: FRONTEND_ORIGINS
+        value: https://cyber-frontend.onrender.com
+      - key: SENDGRID_API_KEY
+        fromFile: SENDGRID_API_KEY
+      - key: SENDGRID_FROM_EMAIL
+        fromFile: SENDGRID_FROM_EMAIL
+      - key: ALLOW_PASSWORD_LOGIN
+        value: "false"
