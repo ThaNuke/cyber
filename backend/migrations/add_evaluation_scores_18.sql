@@ -1,0 +1,27 @@
+-- Migration: Add 18 score columns to evaluations table
+-- Purpose: Support 18-question course evaluation (score_q1 .. score_q18)
+
+ALTER TABLE evaluations
+  ADD COLUMN IF NOT EXISTS score_q1 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q2 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q3 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q4 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q5 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q6 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q7 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q8 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q9 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q10 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q11 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q12 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q13 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q14 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q15 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q16 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q17 SMALLINT,
+  ADD COLUMN IF NOT EXISTS score_q18 SMALLINT;
+
+-- Optional: enforce score range 0..5 (uncomment if you want strict validation)
+-- ALTER TABLE evaluations
+--   ADD CONSTRAINT evaluations_score_q1_range CHECK (score_q1 BETWEEN 0 AND 5);
+
